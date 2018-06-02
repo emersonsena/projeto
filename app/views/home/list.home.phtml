@@ -27,18 +27,19 @@
                 </tr>
               </thead>
               <tbody>
-                <?php foreach ($this->produtos as $key) { ?>
+                <?php foreach ($this->produto as $key) { ?>
 
 
                 <tr>
                   <td><?=$key["descricao"]?></td>
                   <td><?=$key["preco"]?></td>
                   <td><?=$key["imagem"]?></td>
+
                   <td>
                     <div class="btn-group" role="group">
-                      <a type="button" class="btn btn-default btn-primary" href="/editProduto/<?=$key["id_produto"]?>">Editar</a>
-                       <a type="button" class="btn btn-default btn-danger" href="/deleteProduto/<?=$key["id_produto"]?>">Deletar</a>
-
+                      <a type="button" class="btn btn-default btn-primary" href="/loja/editProduto/<?=$key["id_produto"]?>">Editar</a>
+                      <a type="button" class="btn btn-default btn-danger" href="/loja/deleteProduto/<?=$key["id_produto"]?>">Deletar</a>
+                      <a type="button" class="btn btn-default btn-success" href="/loja/modalImg/">Imagem</a>
                     </div>
                   </td>
                 </tr>

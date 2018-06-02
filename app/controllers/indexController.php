@@ -16,10 +16,13 @@ class IndexController extends BaseController{
 	public function Index(){
 
 		$model = new ProdutoModel();
+    //var_dump($model);
+		$dados["produto"] = $model->read();
 
-		$dados["produtos"] = $model->read();
+//  var_dump($dados["produto"]);
+   //$this->service->render('home/list.home.phtml');
 
-		$this->service->render('home/list.home.phtml',$dados);
+	$this->service->render('home/list.home.phtml',$dados);
 	}
 
 
@@ -38,10 +41,11 @@ class IndexController extends BaseController{
     if($model->checkVarsIsNotNull($_POST)){
 	   $dados = array('descricao' => $_POST["descricao"],"preco"=>$_POST["preco"],"imagem"=>$_POST["imagem"] );
 			$result = $model->insert($dados);
-			if($result){		 
-			  $this->response->redirect("/editProduto/{$result}")->send();
+			if($result){
+				$this->response->redirect("/loja")->send();
+			// $this->response->redirect("/loja/editProduto/{$result}")->send();
 			}else{
-	      $this->response->redirect("/erroCadastro")->send();
+	      $this->response->redirect("/loja/erroCadastro")->send();
 			}
 		}else{
 			$this->response->redirect("/cadastro")->send();
@@ -88,10 +92,10 @@ class IndexController extends BaseController{
 		$result = $model->read("*","id_produto={$id}");
 
 		if( count($result) > 0){
-			$dados["produtos"] = $result[0];
+			$dados["produto"] = $result[0];
 			$this->service->render('home/edit.home.phtml',$dados);
 		}else{
-			$this->response->redirect("/")->send();
+			$this->response->redirect("/loja")->send();
 		}
 
 
@@ -108,17 +112,13 @@ class IndexController extends BaseController{
 			$result = $model->update($dados,"id_produto={$id}");
 
 			if($result > 0){
-				$this->response->redirect("/")->send();
+				$this->response->redirect("/loja")->send();
 			}else{
 				$this->response->redirect("/erroUpdate")->send();
 			}
 		}else{
 			$this->response->redirect("/editProduto/{$id}")->send();
 		}
-
-
-
-
 	}
 
 	public function deleteProduto(){
@@ -128,9 +128,17 @@ class IndexController extends BaseController{
 		$result = $model->delete("id_produto={$id}");
 
 		if($result > 0){
-				$this->response->redirect("/")->send();
+				$this->response->redirect("/loja")->send();
 		}else{
 			$this->response->redirect("/erroDelete")->send();
 		}
+	}
+
+	public function modalImagem(){
+		   $this->service->render('home/modImagem.home.phtml');
+	}
+
+	public function listaProd(){
+		   $this->service->render('home/listProd.home.phtml');
 	}
 }

@@ -5,7 +5,10 @@
 
 //Rota principal
 $route->get("/","Index@Index");
-
+//tela de lista de Produtos
+$route->get("/list","Index@listaProd");
+//rota modal imagem
+$route->get("/modalImg","Index@modalImagem");
 //tela de cadastro
 $route->get("/cadastro","Index@cadProduto");
 

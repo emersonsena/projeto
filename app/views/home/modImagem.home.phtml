@@ -1,0 +1,30 @@
+<!-- Modal carregar imagem do produto na tabela-->
+<div class="modal fade" id="modalVisualizarImgProd" role="dialog" data-backdrop="static">
+  <div class="modal-dialog ">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title" style="text-align: center;" >Modal carregar Imagem</h4>
+      </div>
+      <div class="modal-body">
+        <form id="uploadProdEdit" method="post" action="upload.php" enctype="multipart/form-data">
+          <div align="center" >
+            <a id="container_img_visulalizar_prod" href="#" >
+              <img class="img-rounded" style="width:300px;height:300px" src="img/img_caixa.png">
+            </a>
+          </div>
+          <div id="dropProdEdit"  align="center" >
+            <button type="button" class="btn btn-warning" id="importProdEdit"><i class="glyphicon glyphicon-paperclip"></i> Anexar</button>
+              <input id="browserProdEdit" type="file" name="upl" multiple />
+              <input id="paramProdEdit" type="hidden" name="id" />
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" id="btnConfirmarEdit" class="btn btn-primary" data-dismiss="modal" onclick="salvarEditImg()">Confirmar</button>
+        <button type="button" id="btnExcluirProdEdit" class="btn btn-warning" data-dismiss="modal" onclick="excluir_img_pasta_images()">Excluir</button>
+        <button type="button" id="btnCancelarProdEdit" class="btn btn-danger" data-dismiss="modal" onclick="excluir_img_pasta_uploads()">Cancelar</button>
+      </div>
+    </div>
+  </div>
+</div>

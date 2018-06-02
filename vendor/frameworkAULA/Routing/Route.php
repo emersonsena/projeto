@@ -1,10 +1,6 @@
 <?php
 
-/*
-* Vídeo Aula - FrameWork MVC com PHP e AngularJS
-* Palestrante: Felipe Campos
-* Canal: Dicas do Programador
-*/
+
 
 namespace FrameworkAULA\Routing;
 
@@ -26,7 +22,7 @@ class Route extends Klein{
 			$explode = explode("@", $call);
 			$controller = "App\\".NAMESPACE_CONTROLLERS."\\".$explode[0]."Controller";
 			$action = $explode[1];
-			
+
 
 			parent::get($route,function($request, $response, $service, $app) use ($controller,$action){
 				$class = new $controller();
@@ -41,13 +37,13 @@ class Route extends Klein{
 	}
 
 	public function post($route="*",$call=null){
-		
+
 		if(is_string($call)){
 
 			$explode = explode("@", $call);
 			$controller = "App\\".NAMESPACE_CONTROLLERS."\\".$explode[0]."Controller";
 			$action = $explode[1];
-			
+
 
 			parent::post($route,function($request, $response, $service, $app) use ($controller,$action){
 				$class = new $controller();
