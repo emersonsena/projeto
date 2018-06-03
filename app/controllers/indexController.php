@@ -139,6 +139,9 @@ class IndexController extends BaseController{
 	}
 
 	public function listaProd(){
-		   $this->service->render('home/listProd.home.phtml');
+			$model = new ProdutoModel();
+			//var_dump($model);
+			$dados["produto"] = $model->read();
+		   $this->service->render('home/listProd.home.phtml',$dados);
 	}
 }

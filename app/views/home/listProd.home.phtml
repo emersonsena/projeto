@@ -1,15 +1,21 @@
 
 <h2 class="sub-header">Produtos à Venda</h2>
 <div class="container">
+<?php foreach ($this->produto as $key) { ?>
   <div class="row">
     <div class="col-sm-4">
       <div class="panel panel-primary">
-        <div class="panel-heading">BLACK FRIDAY DEAL</div>
-        <div class="panel-body"><img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image"></div>
-        <div class="panel-footer">Buy 50 mobiles and get a gift card</div>
+        <div class="panel-heading">Nome:<?=$key["nome"]?></div>
+        <div class="">
+          <p>Descrição: <?=$key["descricao"]?></p>
+        </div>
+        <!-- src="https://placehold.it/150x80?text=IMAGE" -->
+        <div class="panel-body"><img src="data:image/jpg;base64,<?=base64_encode( $key["imagem"])?>"  class="img-responsive" style="width:100%" alt="Image"></div>
+        <div class="panel-footer">Preço R$:<?=$key["preco"]?></div>
       </div>
     </div>
-    <div class="col-sm-4">
+
+    <!-- <div class="col-sm-4">
       <div class="panel panel-danger">
         <div class="panel-heading">BLACK FRIDAY DEAL</div>
         <div class="panel-body"><img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image"></div>
@@ -22,11 +28,12 @@
         <div class="panel-body"><img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image"></div>
         <div class="panel-footer">Buy 50 mobiles and get a gift card</div>
       </div>
-    </div>
+    </div>-->
   </div>
+  <?php } ?>
 </div><br>
 
-<div class="container">
+<!-- <div class="container">
   <div class="row">
     <div class="col-sm-4">
       <div class="panel panel-primary">
@@ -50,4 +57,4 @@
       </div>
     </div>
   </div>
-</div><br><br>
+</div><br><br> -->

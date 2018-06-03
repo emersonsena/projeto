@@ -28,3 +28,26 @@
     </div>
   </div>
 </div>
+
+<!-- Modal carregar imagem do produto na tabela-->
+<div class="modal fade" id="mdImgProd" role="dialog">
+  <div class="modal-dialog ">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title"><font color="white">Visualizar Imagem</font></h4>
+      </div>
+      <div class="modal-body">
+          <div align="center" >
+            <a id="container_img_list_material" href="#" >
+              <img class="img-rounded" style="width:300px;height:300px" src="data:image/jpg;base64,<?=base64_encode( $key["imagem"])?>">
+            </a>
+          </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- fim do modal carregar imagem do produto na tabela -->

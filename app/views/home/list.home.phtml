@@ -17,9 +17,10 @@
 
           <h2 class="sub-header">Lista de Produtos</h2>
           <div class="table-responsive">
-            <table class="table table-striped">
+            <table class="table table-striped" id="table_material">
               <thead>
                 <tr>
+                  <th>Produto</th>
                   <th>Descricao</th>
                   <th>Preço</th>
                   <th>Imagem</th>
@@ -31,18 +32,22 @@
 
 
                 <tr>
+                  <td><?=$key["nome"]?></td>
                   <td><?=$key["descricao"]?></td>
                   <td><?=$key["preco"]?></td>
-                  <td><?=$key["imagem"]?></td>
-
+                  <td> <img class="img-rounded" style="width:50px;height:50px" src="data:image/jpg;base64,<?=base64_encode( $key["imagem"])?>">  </td>
                   <td>
                     <div class="btn-group" role="group">
                       <a type="button" class="btn btn-default btn-primary" href="/loja/editProduto/<?=$key["id_produto"]?>">Editar</a>
                       <a type="button" class="btn btn-default btn-danger" href="/loja/deleteProduto/<?=$key["id_produto"]?>">Deletar</a>
-                      <a type="button" class="btn btn-default btn-success" href="/loja/modalImg/">Imagem</a>
+                      <!-- <button type="button" class="btn btn-success"   id="btnImg"  >imagem</button> -->
+                      <!-- data-toggle="modal" data-target="#mdImgProd" -->
+
                     </div>
                   </td>
                 </tr>
+
+
                 <?php } ?>
               </tbody>
             </table>
