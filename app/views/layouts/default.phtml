@@ -79,5 +79,27 @@
     <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
     <script src="../../dist/js/bootstrap.min.js"></script>
 
+    <script type="text/javascript">
+    $("#fileUpload").on('change', function () {
 
+      if (typeof (FileReader) != "undefined") {
+
+          var image_holder = $("#image-holder");
+          image_holder.empty();
+
+          var reader = new FileReader();
+          reader.onload = function (e) {
+              $("<img />", {
+                  "src": e.target.result,
+                  "style":"width:150px;height:120px",
+                  "class": "thumb-image"
+              }).appendTo(image_holder);
+          }
+          image_holder.show();
+          reader.readAsDataURL($(this)[0].files[0]);
+      } else{
+          alert("Este navegador nao suporta FileReader.");
+      }
+    });
+    </script>
 </body></html>

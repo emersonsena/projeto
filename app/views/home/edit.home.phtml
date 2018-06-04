@@ -1,6 +1,11 @@
           <h2 class="sub-header">Editar Produtos</h2>
 
-          <form action="<?=base_url()?>/editProduto/<?=$this->produto["id_produto"]?>" method="POST">
+          <form action="<?=base_url()?>/editProduto/<?=$this->produto["id_produto"]?>" method="POST" enctype="multipart/form-data">
+            <div class="form-group">
+              <label for="prodInput">Nome do Produto</label>
+              <input type="text" class="form-control" name="nome" id="prodInput" placeholder="ex:celular" value="<?=$this->produto["nome"]?>">
+            </div>
+
           <div class="form-group">
             <label for="descInput">Descrição</label>
               <input type="text" class="form-control" name="descricao" id="descInput" placeholder="Descricao" value="<?=$this->produto["descricao"]?>">
@@ -14,9 +19,8 @@
           </div>
 
           <div class="form-group">
-            <label for="imagemInput">Imagem</label>
-            <!-- <input type="text" class="form-control" id="imagemInput"  name="imagem" placeholder="imagem"> -->
-            <input type="text" class="form-control" id="imagemInput"  name="imagem" placeholder="imagem" value="<?=$this->produto["imagem"]?>">
+            <h5>Imagem</h5>
+            <img id="imagemInput"  name="imagem" class="img-thumbnail" style="width:304px;height:236px" src="data:image/jpg;base64,<?=base64_encode($this->produto["imagem"])?>">
           </div>
 
           <button type="submit" class="btn btn-success">Salvar</button>

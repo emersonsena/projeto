@@ -14,7 +14,7 @@ class ProdutoModel extends Model{
 
 	public function checkVarsIsNotNull(array $array){
 
-		if(!IsNullOrEmpty($array["descricao"]) && !IsNullOrEmpty($array["preco"]) && !IsNullOrEmpty($array["imagem"])){
+		if(!IsNullOrEmpty($array["nome"]) && !IsNullOrEmpty($array["descricao"]) && !IsNullOrEmpty($array["preco"]) ){
 			return true;
 		}else{
 				return false;

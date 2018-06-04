@@ -36,10 +36,20 @@ class IndexController extends BaseController{
 
 	public function cadProdutoPost(){
 		$model = new ProdutoModel();
-    //var_dump($model->checkVarsIsNotNull($_POST));
-    //$dados = array('descricao' => $_POST["descricao"],"preco"=>$_POST["preco"],"imagem"=>$_POST["imagem"] );
+	  $imagem = $_FILES['imagem']['tmp_name'];
+		if ( $imagem != "none" )
+		{
+			 $fp = fopen($imagem, "rb");
+			 $conteudo = fread($fp, $tamanho);
+			 $conteudo = addslashes($conteudo);
+			 fclose($fp);
+	  }else{
+		 $conteudo=NULL;
+	  }
+
     if($model->checkVarsIsNotNull($_POST)){
-	   $dados = array('descricao' => $_POST["descricao"],"preco"=>$_POST["preco"],"imagem"=>$_POST["imagem"] );
+
+	    $dados = array('nome'=>$_POST["nome"],'descricao' => $_POST["descricao"],"preco"=>$_POST["preco"],"imagem"=>$conteudo);
 			$result = $model->insert($dados);
 			if($result){
 				$this->response->redirect("/loja")->send();
@@ -48,27 +58,9 @@ class IndexController extends BaseController{
 	      $this->response->redirect("/loja/erroCadastro")->send();
 			}
 		}else{
-			$this->response->redirect("/cadastro")->send();
+			$this->response->redirect("/loja/cadastro")->send();
 		}
 
-
-		// $model = new ProdutoModel();
-		//
-		// if($model->checkVarsIsNotNull($_POST)){
-		//
-		//
-		// 	$dados = array('nome' => $_POST["nome"],"phone"=>$_POST["phone"],"email"=>$_POST["email"] );
-		// 	$result = $model->insert($dados);
-		//
-		// 	if($result){
-		//
-		// 		$this->response->redirect("/editProduto/{$result}")->send();
-		// 	}else{
-		// 		$this->response->redirect("/erroCadastro")->send();
-		// 	}
-		// }else{
-		// 	$this->response->redirect("/cadastro")->send();
-		// }
 	}
 
 	public function erroCadastro(){
@@ -105,10 +97,11 @@ class IndexController extends BaseController{
 
 		$id = $this->request->id;
 		$model = new ProdutoModel();
+
 		if($model->checkVarsIsNotNull($_POST)){
 
-
-		  $dados = array('descricao' => $_POST["descricao"],"preco"=>$_POST["preco"],"imagem"=>$_POST["imagem"] );
+     //$dados = array('nome'=>$_POST["nome"],'descricao' => $_POST["descricao"],"preco"=>$_POST["preco"],"imagem"=>$conteudo);
+		  $dados = array('nome'=>$_POST["nome"],'descricao' => $_POST["descricao"],"preco"=>$_POST["preco"],"imagem"=>$_FILES["imagem"] );
 			$result = $model->update($dados,"id_produto={$id}");
 
 			if($result > 0){
@@ -117,9 +110,10 @@ class IndexController extends BaseController{
 				$this->response->redirect("/erroUpdate")->send();
 			}
 		}else{
-			$this->response->redirect("/editProduto/{$id}")->send();
+			$this->response->redirect("/loja/editProduto/{$id}")->send();
 		}
 	}
+
 
 	public function deleteProduto(){
 		$id = $this->request->id;
@@ -134,7 +128,7 @@ class IndexController extends BaseController{
 		}
 	}
 
-	public function modalImagem(){
+	public function carregarImagem(){
 		   $this->service->render('home/modImagem.home.phtml');
 	}
 
